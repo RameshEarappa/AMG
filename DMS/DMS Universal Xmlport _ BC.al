@@ -994,7 +994,8 @@ xmlport 50548 "DMS Universal XMLport"
                             ltxtFilename: Text;
                             lcuFileMgmt: Codeunit "File Management";
                         begin
-                            ltxtFilename := lcuFileMgmt.OpenFileDialog(tcFileDlgTitle, txtFileName, tcFileFilter);
+                            //below functions are obselete so skipping filename as this is optional 06APR2022
+                            //ltxtFilename := lcuFileMgmt.OpenFileDialog(tcFileDlgTitle, txtFileName, tcFileFilter);
                             IF ltxtFilename <> '' THEN BEGIN
                                 txtFileName := ltxtFilename;
                                 currXMLport.FILENAME(txtFileName);

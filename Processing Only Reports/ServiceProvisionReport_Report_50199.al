@@ -40,6 +40,9 @@ report 50199 "Service Provision Report"
                 Clear(InvoiceDate);
                 Clear(GRNAmount);
                 Clear(PurchRcptLine);
+                Clear(CurrentRow);
+                Clear(CurrentCol);
+                Clear(Value1);
 
 
                 PurchRcptLine.SetRange("Document No.", "No.");
@@ -108,9 +111,29 @@ report 50199 "Service Provision Report"
                     ExcelBuf.AddColumn("No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(FORMAT("Posting Date", 0, '<day,2>/<month,2>/<year4>'), FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(GRNAmount, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Number);
-                    ExcelBuf.AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
-                    ExcelBuf.AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
-                    ExcelBuf.AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    //>>Modified because previous it was accepting only less than or equal 250 strings
+                    if StrLen(InvoiceNo) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    if StrLen(InvoiceDate) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    if StrLen(VendorInvNo) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    //<<Modified because previous it was accepting only less than or equal 250 strings
                     ExcelBuf.AddColumn(InvAmount, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Number);
                     ExcelBuf.AddColumn(RecVendor."No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(RecVendor."Name", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
@@ -126,9 +149,29 @@ report 50199 "Service Provision Report"
                     ExcelBuf.AddColumn("No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(FORMAT("Posting Date", 0, '<day,2>/<month,2>/<year4>'), FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(GRNAmount, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Number);
-                    ExcelBuf.AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
-                    ExcelBuf.AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
-                    ExcelBuf.AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    //>>Modified because previous it was accepting only less than or equal 250 strings
+                    if StrLen(InvoiceNo) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    if StrLen(InvoiceDate) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    if StrLen(VendorInvNo) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    //<<Modified because previous it was accepting only less than or equal 250 strings
                     ExcelBuf.AddColumn(InvAmount, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Number);
                     ExcelBuf.AddColumn(RecVendor."No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(RecVendor."Name", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
@@ -143,9 +186,29 @@ report 50199 "Service Provision Report"
                     ExcelBuf.AddColumn("No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(FORMAT("Posting Date", 0, '<day,2>/<month,2>/<year4>'), FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(GRNAmount, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Number);
-                    ExcelBuf.AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
-                    ExcelBuf.AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
-                    ExcelBuf.AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    //>>Modified because previous it was accepting only less than or equal 250 strings
+                    if StrLen(InvoiceNo) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(InvoiceNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    if StrLen(InvoiceDate) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(InvoiceDate, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    if StrLen(VendorInvNo) > 250 then begin
+                        ExcelBuf.UTgetGlobalValue('CurrentCol', Value1);
+                        CurrentCol := Value1;
+                        AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                        ExcelBuf.SetCurrent(CurrentRow, CurrentCol + 1);
+                    end else
+                        ExcelBuf.AddColumn(VendorInvNo, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                    //<<Modified because previous it was accepting only less than or equal 250 strings
                     ExcelBuf.AddColumn(InvAmount, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Number);
                     ExcelBuf.AddColumn(RecVendor."No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
                     ExcelBuf.AddColumn(RecVendor."Name", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
@@ -355,5 +418,40 @@ report 50199 "Service Provision Report"
         TotalInvAmount: Decimal;
         TotalGRNamtWOInv: Decimal;
         TotalinvAmtWOInv: Decimal;
+        CurrentRow: Integer;
+        CurrentCol: Integer;
+        Value1: Variant;
 
+    //>>Modified because previous it was accepting only less than or equal 250 strings
+    procedure AddColumn(Value: Variant; IsFormula: Boolean; CommentText: Text; IsBold: Boolean; IsItalics: Boolean; IsUnderline: Boolean; NumFormat: Text[30]; CellType: Option)
+    begin
+        AddColumnToBuffer(ExcelBuf, Value, IsFormula, CommentText, IsBold, IsItalics, IsUnderline, NumFormat, CellType);
+    end;
+
+    local procedure AddColumnToBuffer(var ExcelBuffer: Record "Excel Buffer"; Value: Variant; IsFormula: Boolean; CommentText: Text; IsBold: Boolean; IsItalics: Boolean; IsUnderline: Boolean; NumFormat: Text[30]; CellType: Option)
+    var
+        OutStream: OutStream;
+    begin
+        ExcelBuffer.UTgetGlobalValue('CurrentRow', Value1);
+        CurrentRow := Value1;
+
+        CurrentCol := CurrentCol + 1;
+        ExcelBuffer.Init();
+        ExcelBuffer.Validate("Row No.", CurrentRow);
+        ExcelBuffer.Validate("Column No.", CurrentCol);
+        if IsFormula then
+            ExcelBuffer.SetFormula(Format(Value))
+        else begin
+            ExcelBuffer."Cell Value as Blob".CreateOutStream(OutStream, TEXTENCODING::Windows);
+            OutStream.Write(Value);
+        end;
+        ExcelBuffer.Comment := CopyStr(CommentText, 1, MaxStrLen(ExcelBuffer.Comment));
+        ExcelBuffer.Bold := IsBold;
+        ExcelBuffer.Italic := IsItalics;
+        ExcelBuffer.Underline := IsUnderline;
+        ExcelBuffer.NumberFormat := NumFormat;
+        ExcelBuffer."Cell Type" := CellType;
+        ExcelBuffer.Insert();
+    end;
+    //<<Modified because previous it was accepting only less than or equal 250 strings
 }

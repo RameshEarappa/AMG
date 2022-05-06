@@ -28,10 +28,11 @@ pageextension 50414 "Ext Vend Ledg Entries" extends "Vendor Ledger Entries"
             }
             field("PO No."; Rec."PO No.")
             { ApplicationArea = all; }
-            field("Vendor Posting Group"; Rec."Vendor Posting Group")
-            {
-                ApplicationArea = All;
-            }
+            //Below field is commited because is already defined in Page 'Vendor Ledger Entries' by the extension 'Base Application by Microsoft 
+            // field("Vendor Posting Group"; Rec."Vendor Posting Group")
+            // {
+            //     ApplicationArea = All;
+            // }
         }
     }
 }

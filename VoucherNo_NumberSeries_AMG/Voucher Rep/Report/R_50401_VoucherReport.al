@@ -2,6 +2,7 @@ report 50401 "Voucher_Report"
 {
     DefaultLayout = RDLC;
     //RDLCLayout = '50101_28_V2.rdl';
+    RDLCLayout = '.\Report-rdlc-files\VoucherReport.rdl';
     Caption = 'Voucher Report';
     PreviewMode = PrintLayout;
     ApplicationArea = All;

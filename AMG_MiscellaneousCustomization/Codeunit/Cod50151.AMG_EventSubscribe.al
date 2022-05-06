@@ -341,4 +341,17 @@ codeunit 50151 AMG_EventSubscribe
     end;
 
     // Stop Code Added By Avinash
+
+
+    [EventSubscriber(ObjectType::Table, Database::"Excel Buffer", 'OnWriteCellValueOnBeforeSetCellValue', '', false, false)]
+    local procedure OnWriteCellValueOnBeforeSetCellValue(var CellTextValue: Text; var ExcelBuffer: Record "Excel Buffer")
+    var
+        InStream: Instream;
+    begin
+        ExcelBuffer.CalcFields("Cell Value as Blob");
+        if ExcelBuffer."Cell Value as Blob".HasValue then begin
+            ExcelBuffer."Cell Value as Blob".CreateInStream(InStream, TextEncoding::Windows);
+            InStream.Read(CellTextValue);
+        end;
+    end;
 }
